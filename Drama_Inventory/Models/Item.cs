@@ -15,6 +15,7 @@ namespace Drama_Inventory.Models
         public decimal Price { get; set; }
 
         [Display(Name="Date Purchased")]
+        [DataType(DataType.Date)]
         public DateTime DatePurchased { get; set; }
 
         //relational database === tables that are related. one - one, one - many, many to many

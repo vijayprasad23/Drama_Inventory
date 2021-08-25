@@ -20,9 +20,16 @@ namespace Drama_Inventory.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Student.ToListAsync());
+            var students = from s in _context.Student
+                           select s;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                students = students.Where(s => s.FirstName.Contains(searchTerm));
+            }
+            return View(await students.ToListAsync());
         }
 
         // GET: Students/Details/5
